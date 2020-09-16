@@ -33,13 +33,21 @@ let UIController = (function(){
 //GLOBAL APP CONTROLLER
 let controller = (function(budgetCtrl, UICtrl){
 
-    let DOM = UICtrl.getDOMstrings();
+    let setupEventListeners = function(){
+        let DOM = UICtrl.getDOMstrings();
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+        document.addEventListener('keypress', function(event){
+            if(event.keyCode === 13 || event.which === 13){
+                event.preventDefault(); // prevents the enter key from also triggering a click event
+                ctrlAddItem();
+            }
+        });
+    };
 
     let ctrlAddItem = function(){
 
         //1. Get field input data
         let input = UICtrl.getInput();
-        console.log(input);
 
         //2. Add item to budget controller
 
@@ -49,15 +57,15 @@ let controller = (function(budgetCtrl, UICtrl){
 
         //5. Display budget on UI
 
+    };
+
+    return {
+        init: function(){
+            console.log('Application has started.');
+            setupEventListeners();
+        }
     }
 
-    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
-
-    document.addEventListener('keypress', function(event){
-        if(event.keyCode === 13 || event.which === 13){
-            event.preventDefault(); // prevents the enter key from also triggering a click event
-            ctrlAddItem();
-        }
-    });
-
 })(budgetController, UIController);
+
+controller.init();
