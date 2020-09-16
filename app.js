@@ -1,18 +1,21 @@
 //BUDGET CONTROLLER
 let budgetController = (function(){
 
-    let Expense = function(id, description, value){
-        this.id = id;
-        this.description = description;
-        this.value = value;
-    };
-
+    //income function constructor
     let Income = function(id, description, value){
         this.id = id;
         this.description = description;
         this.value = value;
     };
 
+    //expense function constructor
+    let Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    //data object
     let data = {
         allItems: {
             exp: [],
@@ -22,7 +25,36 @@ let budgetController = (function(){
             exp: 0,
             inc: 0
         }
-    }
+    };
+
+    return {
+        addItem: function(type, des, val){
+            let newItem, ID;
+
+            //create new item 
+            if(data.allItems[type].length > 0){
+                ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            } else {
+                ID = 0;
+            }
+
+            //create new item based on inc or exp type
+            if (type === 'exp'){
+                newItem = new Expense(ID, des, val)
+            } else if (type === 'inc'){
+                newItem = new Income(ID, des, val)
+            }
+            
+            //push into data structure 
+            data.allItems[type].push(newItem);
+
+            //return new element
+            return newItem;
+        },
+        testing: function(){
+            console.log(data);
+        }
+    };
 
 })();
 
@@ -66,11 +98,13 @@ let controller = (function(budgetCtrl, UICtrl){
     };
 
     let ctrlAddItem = function(){
+        let input, newItem;
 
         //1. Get field input data
-        let input = UICtrl.getInput();
+        input = UICtrl.getInput();
 
         //2. Add item to budget controller
+        newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
         //3. Add item to UI
 
