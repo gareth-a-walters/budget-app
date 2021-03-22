@@ -1,0 +1,12 @@
+.button {
+  @extend .flex-vam;
+  cursor: pointer;
+  color: $white;
+  background-color: $green;
+  padding: 12px 16px;
+  border-radius: 24px;
+  p {
+    font-family: Maax-Medium;
+    font-size: 14px;
+  }
+}

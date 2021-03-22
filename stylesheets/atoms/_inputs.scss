@@ -1,0 +1,10 @@
+select, input {
+    @include transition();
+    padding: 12px;
+    background-color: $white;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    &:focus {
+        border: 1px solid $green;
+    }
+}

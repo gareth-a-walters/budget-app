@@ -1,0 +1,31 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+ 
+  .budget_container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: $white;
+  }
+  img {
+    margin-bottom: 30px;
+  }
+  .budget_value {
+    font-size: 42px;
+    font-weight: 600;
+    width: 80%;
+    margin: 20px auto;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed $green;
+  }
+  .budget_info_wrapper {
+    max-width: 80%;
+    margin: 0 auto;
+    font-size: 20px;
+  }
+}
